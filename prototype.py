@@ -50,6 +50,7 @@ def delete_record(user_id, record_id):
         print(f"No user found {user_id}")
 
 
+
 """
 add_record(101, "2025-03-17", "Deadlift", 180, 5)
 add_record(101, "2025-03-17", "sqaut", 180, 5)
