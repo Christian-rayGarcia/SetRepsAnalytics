@@ -13,11 +13,11 @@ def add_record(user_id, date, exercise, weight, reps):
 
     # Create a new record dictionary
     new_record = {
-        "record_id": new_id,
-        "date": date,
-        "exercise": exercise,
-        "weight": weight,
-        "reps": reps
+        'record_id': new_id,
+        'date': date,
+        'exercise': exercise,
+        'weight': weight,
+        'reps': reps
     }
 
     # If user exists, append to their list
@@ -36,6 +36,18 @@ def show_records(user_id):
                 f"Record ID: {record['record_id']}, Date: {record['date']}, Exercise: {record['exercise']}, Weight: {record['weight']}, Reps: {record['reps']} ")
         else:
             print(f"No records found for User {user_id}")
+
+
+def delete_record(user_id, record_id):
+    if user_id in training_data:
+        updated_records = [record for record in training_data[user_id] if record['record_id'] != record_id]
+        training_data[user_id] = updated_records
+        if len(updated_records) < len(training_data[user_id]):
+            print(f"record {record_id} deleted for the user {user_id}")
+        else:
+            print(f"no record {record_id} found for the user {user_id}")
+    else:
+        print(f"No user found {user_id}")
 
 
 """
