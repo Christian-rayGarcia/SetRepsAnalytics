@@ -50,6 +50,34 @@ def delete_record(user_id, record_id):
         print(f"No user found {user_id}")
 
 
+while True:
+    print("1, Add Record")
+    print("2, Show Records")
+    print("3, Delete Records")
+    print("4, Exit")
+
+    user_choice = input("Enter your choice: ")
+
+    if user_choice == "1":
+        user_id = input("Enter User ID: ")
+        date = today_date
+        exercise = input("Enter exercise: ")
+        weight = input("Enter weight: ")
+        reps = input("Enter reps: ")
+        add_record(user_id, date, exercise)
+
+    elif user_choice == "2":
+        user_id = int(input("Enter User ID to view records: "))
+        show_records(user_id)
+
+    elif user_choice == "3":
+        user_id = int(input("Enter User ID: "))
+        record_id = int(input("Enter Record ID to delete: "))
+        delete_record(user_id, record_id)
+
+    elif user_choice == "4":
+        print("exit")
+        break
 
 """
 add_record(101, "2025-03-17", "Deadlift", 180, 5)
