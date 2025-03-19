@@ -64,15 +64,15 @@ while True:
         exercise = input("Enter exercise: ")
         weight = input("Enter weight: ")
         reps = input("Enter reps: ")
-        add_record(user_id, date, exercise)
+        add_record(user_id, date, exercise, weight, reps)
 
     elif user_choice == "2":
-        user_id = int(input("Enter User ID to view records: "))
+        user_id = input("Enter User ID to view records: ")
         show_records(user_id)
 
     elif user_choice == "3":
-        user_id = int(input("Enter User ID: "))
-        record_id = int(input("Enter Record ID to delete: "))
+        user_id = input("Enter User ID: ")
+        record_id = input("Enter Record ID to delete: ")
         delete_record(user_id, record_id)
 
     elif user_choice == "4":
