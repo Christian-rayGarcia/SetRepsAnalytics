@@ -7,7 +7,7 @@ training_data = {
 }
 
 
-def add_record(user_id, date, exercise, weight, reps):
+def add_record(user_id, date, exercise, weight, sets, reps):
     # Generate a unique record_id (increment from the last one)
     new_id = max([record["record_id"] for record in training_data.get(user_id, [])], default=0) + 1
 
@@ -17,12 +17,13 @@ def add_record(user_id, date, exercise, weight, reps):
         'date': date,
         'exercise': exercise,
         'weight': weight,
+        'sets': sets,
         'reps': reps
     }
 
     # If user exists, append to their list
     if user_id in training_data:
-        training_data[user_id].append(new_record)
+        training_data[user_id].append(training_data)
     else:
         # If user doesn't exist, create a new list with the record
         training_data[user_id] = [new_record]
@@ -34,8 +35,8 @@ def show_records(user_id):
         for record in training_data[user_id]:
             print(
                 f"Record ID: {record['record_id']}, Date: {record['date']}, Exercise: {record['exercise']}, Weight: {record['weight']}, Reps: {record['reps']} ")
-        else:
-            print(f"No records found for User {user_id}")
+    else:
+        print(f"No records found for User {user_id}")
 
 
 def delete_record(user_id, record_id):
@@ -63,8 +64,9 @@ while True:
         date = today_date
         exercise = input("Enter exercise: ")
         weight = input("Enter weight: ")
+        sets = input("Enter sets: ")
         reps = input("Enter reps: ")
-        add_record(user_id, date, exercise, weight, reps)
+        add_record(user_id, date, exercise, weight, sets, reps)
 
     elif user_choice == "2":
         user_id = input("Enter User ID to view records: ")
