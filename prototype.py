@@ -23,7 +23,7 @@ def add_record(user_id, date, exercise, weight, sets, reps):
 
     # If user exists, append to their list
     if user_id in training_data:
-        training_data[user_id].append(training_data)
+        training_data[user_id].append(new_record)
     else:
         # If user doesn't exist, create a new list with the record
         training_data[user_id] = [new_record]
@@ -34,17 +34,19 @@ def show_records(user_id):
         print(f"\n Records for User {user_id}:")
         for record in training_data[user_id]:
             print(
-                f"Record ID: {record['record_id']}, Date: {record['date']}, Exercise: {record['exercise']}, Weight: {record['weight']}, Reps: {record['reps']} ")
+                f"Record ID: {record['record_id']}, Date: {record['date']}, Exercise: {record['exercise']}, Weight: {record['weight']}, Sets: {record['sets']} Reps: {record['reps']} ")
     else:
         print(f"No records found for User {user_id}")
 
 
 def delete_record(user_id, record_id):
     if user_id in training_data:
+        original_len = len(training_data[user_id])
         updated_records = [record for record in training_data[user_id] if record['record_id'] != record_id]
-        training_data[user_id] = updated_records
-        if len(updated_records) < len(training_data[user_id]):
-            print(f"record {record_id} deleted for the user {user_id}")
+
+        if len(updated_records) < original_len:
+            training_data[user_id] = updated_records  # <-- move this inside the if block
+            print(f"✅ Record {record_id} deleted for User {user_id}")
         else:
             print(f"no record {record_id} found for the user {user_id}")
     else:
